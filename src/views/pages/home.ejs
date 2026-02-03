@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node Server Template</title>
+    <link rel="stylesheet" type="text/css" href="/styles/globalStyles.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/header.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/footer.css" />
+  </head>
+  <body>
+    <!-- Header section -->
+    <%- include("../components/header") %>
+
+    <!-- Main section -->
+    <div class="main-div">
+      <h1>Welcome</h1>
+      <h2>
+        Server is running on port
+        <span class="port-style"> <%= serverPort %> </span>
+      </h2>
+
+      <div class="home-button-group">
+        <a class="btn" href="/register" role="button">Register</a>
+        <a class="btn" href="/login" role="button">Login</a>
+      </div>
+    </div>
+
+    <!-- Footer section -->
+    <%- include("../components/footer") %>
+  </body>
+</html>

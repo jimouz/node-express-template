@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build / cache
+.cache/
+dist/
+tmp/
+temp/
+
+# Coverage
+coverage/
+*.lcov
+
+# MySQL dumps
+*.sql
+
+# VSCode
+.vscode/
+
+# Parcel / Vite / Webpack (future-proof)
+.parcel-cache/
+.vite/
+build/
+
+# Output of npm pack
+*.tgz
+
+# REPL history
+.node_repl_history
