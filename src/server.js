@@ -15,8 +15,9 @@ const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_NAME = process.env.DB_NAME;
-
+const COOKIE_AGE = Number(process.env.COOKIE_AGE);
 const sRounds = 10;
+
 app.set("port", PORT);
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(express.static("./src/public"));
@@ -24,8 +25,12 @@ app.use(
     session({
         secret: process.env.SESSION_SECRET,     // Session cookie signature key
         resave: false,                          // Don't save unchanged sessions
-        saveUninitialized: true,                // Create session for new visitors
-        // store: sessionStorage,
+        saveUninitialized: false,               // Create session for new visitors
+        cookie: {
+            httpOnly: true,                     // Prevents client-side JS from accessing the cookie
+            secure: false,                      // true in production
+            maxAge: COOKIE_AGE,                 // Session age
+        }
     })
 );
 app.use(passport.initialize());
