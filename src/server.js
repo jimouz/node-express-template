@@ -16,7 +16,7 @@ const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_NAME = process.env.DB_NAME;
 const COOKIE_AGE = Number(process.env.COOKIE_AGE);
-const sRounds = 10;
+
 
 app.set("port", PORT);
 app.use(bodyParser.urlencoded({ extended:true }));
@@ -33,11 +33,6 @@ app.use(
         }
     })
 );
-app.use(passport.initialize());
-app.use(passport.session());
-app.use("/", routes);
-app.set("view engine", "ejs");
-app.set("views", "./src/views");
 
 const dbCon = await mysql.createConnection({
     host: DB_HOST,              // MySQL host
@@ -45,6 +40,12 @@ const dbCon = await mysql.createConnection({
     password: DB_PASSWORD,      // MySQL password
     database: DB_NAME           // Database name
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use("/", routes(dbCon));
+app.set("view engine", "ejs");
+app.set("views", "./src/views");
 
 passport.use(new Strategy(async function verify(username, password, cb) {
     try {
@@ -60,11 +61,11 @@ passport.use(new Strategy(async function verify(username, password, cb) {
                     console.log(`Error comparing passwords : ${err}`);
                     return cb(err);
                 } else {
-                if (result) {
-                        cb(null, user);
-                } else {
-                        return cb(null, false);
-                }
+                    if (result) {
+                            cb(null, user);
+                    } else {
+                            return cb(null, false);
+                    }
                 }
             });
         } else {
