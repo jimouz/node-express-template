@@ -11,10 +11,11 @@ import routes from "./routes/routes.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
-const HOST = process.env.HOST;
-const USER = process.env.USER;
-const PASSWORD = process.env.PASSWORD;
-const DBNAME = process.env.DBNAME;
+const DB_HOST = process.env.DB_HOST;
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_NAME = process.env.DB_NAME;
+
 const sRounds = 10;
 app.set("port", PORT);
 app.use(bodyParser.urlencoded({ extended:true }));
@@ -24,6 +25,7 @@ app.use(
         secret: process.env.SESSION_SECRET,     // Session cookie signature key
         resave: false,                          // Don't save unchanged sessions
         saveUninitialized: true,                // Create session for new visitors
+        // store: sessionStorage,
     })
 );
 app.use(passport.initialize());
@@ -33,10 +35,10 @@ app.set("view engine", "ejs");
 app.set("views", "./src/views");
 
 const dbCon = await mysql.createConnection({
-    host: HOST,             // MySQL host
-    user: USER,             // MySQL username
-    password: PASSWORD,     // MySQL password
-    database: DBNAME        // Database name
+    host: DB_HOST,              // MySQL host
+    user: DB_USER,              // MySQL username
+    password: DB_PASSWORD,      // MySQL password
+    database: DB_NAME           // Database name
 });
 
 passport.use(new Strategy(async function verify(username, password, cb) {
@@ -69,11 +71,22 @@ passport.use(new Strategy(async function verify(username, password, cb) {
 }));
 
 passport.serializeUser((user, cb) => {
-    cb(null, user);
+    cb(null, user.idnew_table);
 });
 
-passport.deserializeUser((user, cb) => {
-    cb(null, user);
+passport.deserializeUser(async (id, cb) => {
+    try {
+        const [rows] = await dbCon.execute(
+            "SELECT * FROM users WHERE idnew_table=?",
+            [id]
+        );
+
+        if (!rows.length) return cb(null, false);
+
+        cb(null, rows[0]);
+    } catch (err) {
+        cb(err);
+    }
 });
 
 app.listen(PORT, () => {
