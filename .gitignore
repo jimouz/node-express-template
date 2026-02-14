@@ -42,3 +42,6 @@ build/
 
 # REPL history
 .node_repl_history
+
+*.bat
+

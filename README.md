@@ -13,7 +13,11 @@ A clean, modular and production‑ready Node.js starter template built with:
 
 - **User authentication** (login, register, logout)
 - **Session-based auth** with `express-session`
-- **Modular routing** (`routes/`)
+- **Custom Passport error messages** (`User not found`, `Wrong password`)
+- **Backend validation** with `express-validator`
+- **EJS error rendering** with reusable `error-box` component
+- **Old form values** preserved on validation errors
+- **Protected routes** (dashboard)
 - **MySQL database integration**
 - **EJS views** with clean folder structure
 - **Static assets** served from `/public`
@@ -34,6 +38,7 @@ NODE_TEMPLATE/
 │  │  └─ routes.js
 │  ├─ views/
 │  │  ├─ components/
+|  |  |  ├─ error-box.ejs
 │  │  │  ├─ header.ejs
 │  │  │  └─ footer.ejs
 │  │  └─ pages/
@@ -84,6 +89,9 @@ http://localhost:3000
 - /home → Select register or login
 - /register → Create new user (hashed password)
 - /login → Authenticate via Passport Local Strategy
+  - Shows validation errors
+  - Shows backend auth errors (wrong password, user not found)
+  - Keeps old form values
 - /dashboard → Protected route (requires login)
 - /logout → Destroy session
 

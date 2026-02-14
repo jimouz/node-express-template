@@ -17,7 +17,6 @@ const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_NAME = process.env.DB_NAME;
 const COOKIE_AGE = Number(process.env.COOKIE_AGE);
 
-
 app.set("port", PORT);
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(express.static("./src/public"));
@@ -64,12 +63,12 @@ passport.use(new Strategy(async function verify(username, password, cb) {
                     if (result) {
                             cb(null, user);
                     } else {
-                            return cb(null, false);
+                            return cb(null, false, { message: "Wrong password" });
                     }
                 }
             });
         } else {
-            return cb("User not found");
+            return cb(null, false, { message: "User not found" });
         }
     } catch (err) {
         return cb(err);

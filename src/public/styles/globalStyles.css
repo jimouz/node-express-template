@@ -1,6 +1,6 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
+    color: #fffd;
 }
 html, body {
     width: 100vw;
@@ -35,6 +35,17 @@ body {
     background-color: #fff2;
     border-radius: 8px;
 }
+.error-box-container {
+    min-height: 30px;
+}
+.error-box {
+    border-left: 4px solid #f00a;
+    padding-right: 4px;
+}
+.error-box p {
+    color: #f00a;
+    padding: 0 4px;
+}
 .form-input-group {
     display: flex;
     flex-flow: column;
@@ -57,6 +68,7 @@ input {
     padding: 8px;
     margin: auto;
     margin-top: 8px;
+    color: #fffa;
     background-color: #fff4;
     text-align: center;
     text-decoration: none;

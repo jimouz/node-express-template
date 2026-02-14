@@ -16,6 +16,9 @@
     <div class="form-container">
       <form action="/register" method="POST">
         <h2>Register</h2>
+        <div class="error-box-container">
+          <%- include("../components/error-box") %>
+        </div>
         <h3>
           Server is running on port
           <span class="port-style"> <%= serverPort %> </span>
