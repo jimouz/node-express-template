@@ -85,14 +85,23 @@ export default function (dbCon) {
                         old: req.body
                     });
                 }
-
-                req.login(user, (err) => {
+                req.login(user, async (err) => {
                     if (err) return next(err);
+
+                    // 🔥 INSERT στο user_logins
+                    try {
+                        await dbCon.execute(
+                            "INSERT INTO user_logins (email) VALUES (?)",
+                            [user.email]
+                        );
+                    } catch (error) {
+                        console.error("Login logging error:", error);
+                    }
+                    // ---------------------------------------------
                     return res.redirect("/dashboard");
                 });
             })(req, res, next);
         }
-
     );
 
     // Register
