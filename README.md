@@ -22,6 +22,7 @@ A clean, modular and production‑ready Node.js starter template built with:
 - **EJS views** with clean folder structure
 - **Static assets** served from `/public`
 - **Login tracking system** (records successful logins in `user_logins` table with timestamp)
+- **Login history system with dashboard component** (username + last 5 logins)
 
 ## Project Structure
 
