@@ -110,3 +110,25 @@ input {
     font-weight: 400;
     opacity: 0.8;
 }
+.date-widget {
+    border: 1px solid #aaaa;
+    text-align: center;
+    margin: 20px auto;
+    padding: 8px 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 300px;
+}
+
+.date {
+    padding: 8px;
+    display: block;
+    font-weight: 500;
+}
+
+.time {
+    padding: 18px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
