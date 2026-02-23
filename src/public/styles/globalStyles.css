@@ -78,3 +78,35 @@ input {
     border: none;
     cursor: pointer;
 }
+.last-logins {
+    margin: 0 auto;
+    max-width: 300px;
+    text-align: left;
+    border: 1px solid #fff4;
+}
+.last-logins ul {
+    list-style: none;
+    padding: 8px 12px;
+    margin: 0;
+}
+.last-logins li {
+    padding: 6px 0;
+    border-bottom: 1px solid #fff2;
+    font-size: 0.9rem;
+}
+
+.last-logins > h3, .last-logins > h5 {
+    padding-left: 8px;
+}
+.last-logins > h3 {
+    margin-bottom: 4px;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.last-logins > h5 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: 400;
+    opacity: 0.8;
+}

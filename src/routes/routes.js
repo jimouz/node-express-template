@@ -29,13 +29,31 @@ export default function (dbCon) {
         });
     });
 
-
+    // Dashboard
     router.get("/dashboard", async (req, res) => {
-        // console.log(req.user);
-        if (req.isAuthenticated()) {
-            res.render("pages/dashboard", { serverPort: req.app.get("port") });
-        } else {
-            res.redirect("/login");
+
+        if (!req.isAuthenticated()) {
+            return res.redirect("/login");
+        }
+
+        try {
+            // Last login
+            const [rows] = await dbCon.execute(
+                "SELECT logged_in_at FROM user_logins WHERE email = ? ORDER BY logged_in_at DESC LIMIT 5",
+                [req.user.email]
+            );
+
+            const lastLogins = rows.length > 0 ? rows[0].logged_in_at : null;
+
+            res.render("pages/dashboard", { 
+                serverPort: req.app.get("port"),
+                user: req.user,
+                lastLogins: rows
+            });
+
+        } catch (err) {
+            console.error(err);
+            res.send("Server error");
         }
     });
 

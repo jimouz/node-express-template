@@ -1,0 +1,14 @@
+<!-- Last logins -->
+      <div class="last-logins">
+        <h3>Last 5 logins</h3>
+        <h5>USER: <%= user.email %></h5>
+        <ul>
+          <% if (lastLogins && lastLogins.length > 0) { %>
+            <% lastLogins.forEach(login => { %>
+              <li><%= new Date(login.logged_in_at).toLocaleString() %></li>
+            <% }) %>
+          <% } else { %>
+            <li>No login history found.</li>
+          <% } %>
+        </ul>
+      </div>

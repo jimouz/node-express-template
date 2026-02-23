@@ -14,13 +14,13 @@
     <!-- Main section -->
     <div class="main-div">
       <h1>Dashboard</h1>
-      <h2>
+      <h5>
         Server is running on port
         <span class="port-style"> <%= serverPort %> </span>
-      </h2>
+      </h5>
+      <%- include("../components/login-history") %>
     </div>
     <a class="btn" href="/logout" role="button">Log Out</a>
-
     <!-- Footer section -->
     <%- include("../components/footer") %>
   </body>
