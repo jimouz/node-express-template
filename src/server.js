@@ -33,7 +33,7 @@ app.use(
         saveUninitialized: false,               // Create session for new visitors
         cookie: {
             httpOnly: true,                     // Prevents client-side JS from accessing the cookie
-            secure: false,                      // true in production
+            secure: false,                      // True in production
             maxAge: COOKIE_AGE,                 // Session age
         }
     })
