@@ -5,7 +5,7 @@
 html, body {
     width: 100vw;
     margin: 0;
-    background-color: #000;
+    background-color: #040404;
 }
 body {
     display: flex;
@@ -78,15 +78,26 @@ input {
     border: none;
     cursor: pointer;
 }
+.logout {
+    width: 300px;
+    margin: 0 auto 16px auto;
+    text-align: center;
+    padding: 16px;
+    border-bottom: 1px solid #fff2;
+}
+.btn:hover {
+    background-color: #fff2;
+}
 .last-logins {
-    margin: 0 auto;
-    max-width: 300px;
+    margin: 4px auto;
+    width: 300px;
+    min-height: 224px;
     text-align: left;
-    border: 1px solid #fff4;
+    border: 1px solid #aaaa;
 }
 .last-logins ul {
     list-style: none;
-    padding: 8px 12px;
+    padding: 4px 12px;
     margin: 0;
 }
 .last-logins li {
@@ -113,11 +124,11 @@ input {
 .date-widget {
     border: 1px solid #aaaa;
     text-align: center;
-    margin: 20px auto;
-    padding: 8px 0;
+    margin: 4px auto;
+    padding: 12px 0;
     font-size: 1.1rem;
     opacity: 0.9;
-    max-width: 300px;
+    width: 300px;
 }
 
 .date {

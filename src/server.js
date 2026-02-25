@@ -20,6 +20,12 @@ const COOKIE_AGE = Number(process.env.COOKIE_AGE);
 app.set("port", PORT);
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(express.static("./src/public"));
+
+// Weather API key route
+app.get("/api/weather-key", (req, res) => {
+    res.json({ key: process.env.OPENWEATHER_API_KEY });
+});
+
 app.use(
     session({
         secret: process.env.SESSION_SECRET,     // Session cookie signature key

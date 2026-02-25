@@ -2,7 +2,7 @@ import passport from "passport";
 import bcrypt from "bcrypt";
 import { validationResult } from "express-validator";
 
-const sRounds = 10;
+const sRounds = Number(process.env.BCRYPT_SALT_ROUNDS);
 
 export const showLogin = (req, res) => {
     res.render("pages/login", {
